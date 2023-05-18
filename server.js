@@ -2,6 +2,8 @@ const express = require("express");
 const fs = require("fs");
 const path = require("path");
 
+const { v4: uuidv4 } = require("uuid");
+
 const { notes } = require("./db/db.json");
 
 const app = express();
@@ -40,3 +42,29 @@ function createNewNote(body, notesArray) {
   );
   return newNote;
 }
+
+// Routes to view, create, and delete notes
+app.get("/notes", function (req, res) {
+  res.sendFile(path.join(__dirname, "/public/notes.html"));
+});
+
+app.get("/api/notes", (req, res) => {
+  let results = notes;
+  res.json(results);
+});
+
+app.post("/api/notes", (req, res) => {
+  req.body.id = uuidv4();
+  const newNote = createNewNote(req.body, notes);
+  res.json(newNote);
+});
+
+app.delete("/api/notes/:id", (req, res) => {
+  const params = req.params.id;
+  updateDb(params, notes);
+  res.redirect("");
+});
+
+app.listen(PORT, () =>
+  console.log(`Serving static asset routes on port ${PORT}!`)
+);
