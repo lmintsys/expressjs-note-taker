@@ -9,7 +9,7 @@ The aim of this project was to create a note taking app using Express.js. This a
 ## Usage
 
 On the main page a user will be prompted to enter the note taker app. Once in the app, the user will see the titles of their notes on the left side of the screen and a space to create a new note on the right. The user will be able to view a full note by clicking on its title, create a new note by clicking on "+", and save it to the notes list. Each note can also be deleted.  
-[Note Taker App]()  
+[Note Taker App](https://expressjs-note-taker2303.herokuapp.com/)  
 ![main](public/assets/images/main.png)  
 ![notes](public/assets/images/notes.png)
 
